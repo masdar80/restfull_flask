@@ -1,0 +1,30 @@
+
+https://stackoverflow.com/questions/59945363/how-to-copy-python-virtual-environment-flask-project-to-another-server-and-deplo
+----------------------------------
+
+
+Step 1- create a requirements.txt file which will contain all the python packages list with the version. To create this file you can just run the below command to generate requirements.txt file on your local machine.
+
+pip freeze > requirements.txt
+
+Step 2- Now, if you are using git then add this file in your git repository. make sure you have the whole project in the git repo except your virtual environment folder.
+
+Step 3- Clone the git repository on your server.
+
+git clone <repo url>
+
+Step 4- Create a virtual environment in your project folder.
+
+cd <yourproject>
+
+virtualenv venv
+
+Step 5- Activate virual environment
+
+Source venv/bin/activate
+
+Step 6- Install python packages by running the following command.
+
+pip install -r requirements.txt 
+
+This will install all the python packages which is required for this project to run

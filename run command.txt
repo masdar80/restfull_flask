@@ -1,0 +1,43 @@
+on local development PC run
+pip freeze > requirements.txt
+copy the prohject folder with requirements.txt
+
+
+on new PC run
+insatll python 3.6
+-------------------------------------------------------------------------------------------------
+add PATH  :
+c:\users\masdar\appdata\local\programs\python\python36\Scripts
+
+-------------------------------------------------------------------------------------------------
+install virtualenv
+C:\Users\MasDar\AppData\Local\Programs\Python\Python36\python -m pip install --user virtualenv
+Create a virtual environment in your project folder.
+
+cd <yourproject>
+
+C:\Users\MasDar\AppData\Local\Programs\Python\Python36\python -m venv env
+-------------------------------------------------------------------------------------------------
+install source
+C:\Users\MasDar\AppData\Local\Programs\Python\Python36\python -m pip install --user source
+Activate virual environment
+
+.\env\Scripts\activate
+-------------------------------------------------------------------------------------------------
+
+
+-------------------------------------------------------------------------------------------------
+upgrade pip version
+C:\Users\MasDar\AppData\Local\Programs\Python\Python36\python -m pip install --upgrade pip
+-------------------------------------------------------------------------------------------------
+make sure in requirements.txt that keras located after tensorflow
+install project packages
+C:\Users\MasDar\AppData\Local\Programs\Python\Python36\Scripts\pip install -r requirements.txt
+-------------------------------------------------------------------------------------------------
+
+manual install ???   better u install VC_redist.x64.exe
+C:\Users\MasDar\AppData\Local\Programs\Python\Python36\Scripts\pip install tensorflow
+-------------------------------------------------------------------------------------------------
+
+run project:
+C:\Users\HP\AppData\Local\Programs\Python\Python36\python.exe -m flask run --no-debugger  --host 0.0.0.0
