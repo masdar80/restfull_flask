@@ -7,13 +7,29 @@ from os import path
 import flask
 from flask import make_response, send_file
 from flask import Flask, request, redirect, jsonify
+from sqlalchemy import engine
 from werkzeug.utils import secure_filename
 from resources.Patient import Patient, PatientSchema, db, app, ALLOWED_EXTENSIONS, Visits, VisitsSchema
 from pain_recognition.prediction import get_prediction_result
 
 
+from datetime import datetime
+from sqlalchemy import create_engine, Column, Integer, ForeignKey, Numeric, DateTime, func
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import Session, relationship
+
+session = Session(bind=engine)
+
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/test', methods=['GET'])
+def visits_group_by():
+    get_visits = db.session.query(func.count(Visits.idpatient_visits).label('total')).group_by(Visits.patient_visit_company).all()
+    print(get_visits)
+
+
+
 
 
 # TESTTTTTTTTTTTTTTTTTT image
@@ -118,6 +134,8 @@ def update_visit_by_id(_id):
         get_visit.patient_visit_company = request.form['patient_visit_company']
     if request.form.get('patient_visit_pain_degree'):
         get_visit.patient_visit_pain_degree = request.form['patient_visit_pain_degree']
+    else:
+        get_visit.patient_visit_pain_degree = -1
     if request.form.get('patient_visit_date'):
         str_birthday = request.form['patient_visit_date']
         if str_birthday == '':
@@ -145,6 +163,7 @@ def update_visit_by_id(_id):
             # Get Pain Degree From Image
             # get_prediction_result(filepath)
             print(get_prediction_result(filepath))
+        # get_visit.patient_visit_pain_degree = request.form['patient_visit_pain_degree']
         else:
             resp = jsonify({'message': 'مشكلة باسم الصورة'})
             resp.status_code = 400
@@ -170,7 +189,7 @@ def delete_visit_by_id(_id):
 
 @app.route('/visits', methods=['POST'])
 def create_visit():
-    patient_visit_pain_degree = 5
+    # patient_visit_pain_degree = 5
     patient_visits_image = ''
     if request.form.get('patient_visit_patient_id'):
         patient_visit_patient_id = request.form['patient_visit_patient_id']
@@ -186,6 +205,8 @@ def create_visit():
         patient_visit_company = request.form['patient_visit_company']
     if request.form.get('patient_visit_pain_degree'):
         patient_visit_pain_degree = request.form['patient_visit_pain_degree']
+    else:
+        patient_visit_pain_degree = -1
     if request.form.get('patient_visit_date'):
         str_birthday = request.form['patient_visit_date']
         if str_birthday == '' or str_birthday is None:
@@ -375,6 +396,49 @@ def pain_mesurment():
             resp.status_code = 400
             return resp
     return make_response(jsonify({'degree': result}))
+
+
+@app.route('/update_visit_image/<_id>', methods=['POST'])
+def update_visit_image_by_id(_id):
+    get_visit = Visits.query.get(_id)
+    if not get_visit:
+        resp = jsonify({'message': 'no one '})
+        resp.status_code = 800
+        return resp
+
+    if 'patient_visits_image' in request.files:
+        file = request.files['patient_visits_image']
+        if file and file.filename != '' and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+
+            upload_directory = os.path.join(app.config['UPLOAD_FOLDER'], str(get_visit.patient_visit_patient_id))
+            print(upload_directory)
+            # datetime object containing current date and time
+            now = datetime.now()
+            print("now =", now)
+            # dd/mm/YY H:M:S
+            dt_string = now.strftime("%d-%m-%Y_%H-%M-%S")
+            filepath = os.path.join(upload_directory, dt_string + '_' + filename)
+            print(filepath)
+            if not path.exists(upload_directory):
+                os.mkdir(upload_directory)
+            file.save(filepath)
+            get_visit.patient_visits_image = filepath
+            # Get Pain Degree From Image
+            # get_prediction_result(filepath)
+            calculated_degree = get_prediction_result(filepath)
+            print(calculated_degree)
+            #get_visit.patient_visit_pain_degree = calculated_degree
+            get_visit.patient_visit_pain_degree=1
+        else:
+            resp = jsonify({'message': 'مشكلة باسم الصورة'})
+            resp.status_code = 407
+            return resp
+    db.session.add(get_visit)
+    db.session.commit()
+    visit_schema = VisitsSchema()
+    visit = visit_schema.dump(get_visit)
+    return make_response(jsonify(visit))
 
 
 if __name__ == "__main__":
