@@ -12,7 +12,6 @@ from werkzeug.utils import secure_filename
 from resources.Patient import Patient, PatientSchema, db, app, ALLOWED_EXTENSIONS, Visits, VisitsSchema
 from pain_recognition.prediction import get_prediction_result
 
-
 from datetime import datetime
 from sqlalchemy import create_engine, Column, Integer, ForeignKey, Numeric, DateTime, func
 from sqlalchemy.ext.declarative import declarative_base
@@ -20,16 +19,16 @@ from sqlalchemy.orm import Session, relationship
 
 session = Session(bind=engine)
 
+
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+
 @app.route('/test', methods=['GET'])
 def visits_group_by():
-    get_visits = db.session.query(func.count(Visits.idpatient_visits).label('total')).group_by(Visits.patient_visit_company).all()
+    get_visits = db.session.query(func.count(Visits.idpatient_visits).label('total')).group_by(
+        Visits.patient_visit_company).all()
     print(get_visits)
-
-
-
 
 
 # TESTTTTTTTTTTTTTTTTTT image
@@ -155,13 +154,16 @@ def update_visit_by_id(_id):
             # dd/mm/YY H:M:S
             dt_string = now.strftime("%d-%m-%Y_%H-%M-%S")
             filepath = os.path.join(upload_directory, dt_string + '_' + filename)
-            print(filepath)
+            print("old path:" + filepath)
+            filepath = filepath.replace("\\", "/")
+            print("new path:" + filepath)
             if not path.exists(upload_directory):
                 os.mkdir(upload_directory)
             file.save(filepath)
             get_visit.patient_visits_image = filepath
             # Get Pain Degree From Image
             # get_prediction_result(filepath)
+
             print(get_prediction_result(filepath))
         # get_visit.patient_visit_pain_degree = request.form['patient_visit_pain_degree']
         else:
@@ -428,8 +430,8 @@ def update_visit_image_by_id(_id):
             # get_prediction_result(filepath)
             calculated_degree = get_prediction_result(filepath)
             print(calculated_degree)
-            #get_visit.patient_visit_pain_degree = calculated_degree
-            get_visit.patient_visit_pain_degree=1
+            get_visit.patient_visit_pain_degree = calculated_degree
+            #get_visit.patient_visit_pain_degree = 1
         else:
             resp = jsonify({'message': 'مشكلة باسم الصورة'})
             resp.status_code = 407

@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c802ef3a-dff5-417d-a19d-172f4e221bd2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/other.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pain_recognition/haarcascade_profileface.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pain_recognition/pain.h5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pain_recognition/pain.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/database.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pain_recognition/prediction.py" beforeDir="false" afterPath="$PROJECT_DIR$/pain_recognition/prediction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,13 +39,6 @@
         <item name="database" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="database" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
-        <item name="patient_visits: table" type="3d80ac25:SqliteImplModel$Table" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
@@ -87,6 +79,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\PycharmProjects\SQLiteRest\pain_recognition" />
       <recent name="F:\PycharmProjects\mysqlRest\pain_recognition" />
     </key>
   </component>
@@ -117,9 +110,6 @@
       <module name="mysqlRest" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pain_recognition" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -194,7 +184,15 @@
       <workItem from="1612529630044" duration="601000" />
       <workItem from="1612723791274" duration="318000" />
       <workItem from="1613662128230" duration="1169000" />
-      <workItem from="1613663312284" duration="490000" />
+      <workItem from="1613663312284" duration="1422000" />
+      <workItem from="1613732642757" duration="2256000" />
+      <workItem from="1613744993397" duration="1578000" />
+      <workItem from="1613827934573" duration="334000" />
+      <workItem from="1614720476172" duration="569000" />
+      <workItem from="1616612952156" duration="1424000" />
+      <workItem from="1616755726605" duration="845000" />
+      <workItem from="1616756685310" duration="47000" />
+      <workItem from="1616756924923" duration="1014000" />
     </task>
     <task id="LOCAL-00001" summary="skata">
       <created>1613663279457</created>
@@ -203,7 +201,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613663279457</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="skata">
+      <created>1613663843619</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1613663843619</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,10 +219,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="skata" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="361" y="71" key="#Deployment" timestamp="1606485882585">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="361" y="71" key="#Deployment/0.0.1536.824@0.0.1536.824" timestamp="1606485882585" />
     <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1613662701537">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -226,38 +227,42 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1613663542345" />
-    <state x="393" y="7" key="CommitChangelistDialog2" timestamp="1613663277526">
+    <state x="393" y="7" key="CommitChangelistDialog2" timestamp="1613663842213">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="393" y="7" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1613663277526" />
-    <state width="1493" height="197" key="GridCell.Tab.0.bottom" timestamp="1613663748692">
+    <state x="393" y="7" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1613663842213" />
+    <state width="1493" height="241" key="GridCell.Tab.0.bottom" timestamp="1616757969515">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="197" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1613663748692" />
-    <state width="1493" height="197" key="GridCell.Tab.0.center" timestamp="1613663748692">
+    <state width="1493" height="241" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1616757969515" />
+    <state width="1493" height="241" key="GridCell.Tab.0.center" timestamp="1616757969515">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="197" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1613663748692" />
-    <state width="1493" height="197" key="GridCell.Tab.0.left" timestamp="1613663748692">
+    <state width="1493" height="241" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1616757969515" />
+    <state width="1493" height="241" key="GridCell.Tab.0.left" timestamp="1616757969515">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="197" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1613663748692" />
-    <state width="1493" height="197" key="GridCell.Tab.0.right" timestamp="1613663748692">
+    <state width="1493" height="241" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1616757969515" />
+    <state width="1493" height="241" key="GridCell.Tab.0.right" timestamp="1616757969515">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="197" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1613663748692" />
-    <state x="206" y="77" key="SettingsEditor" timestamp="1606478633292">
+    <state width="1493" height="241" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1616757969515" />
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1616757013701">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="206" y="77" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1606478633292" />
-    <state x="478" y="54" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1605630530027">
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1616757013701" />
+    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1616757013701">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="478" y="54" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1536.824@0.0.1536.824" timestamp="1605630530027" />
-    <state x="408" y="27" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1605631837661">
+    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1616757013701" />
+    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1616757013701">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="408" y="27" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1536.824@0.0.1536.824" timestamp="1605631837661" />
+    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1616757013685" />
+    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1616757013701">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1616757013701" />
     <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1613663805094">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -268,15 +273,32 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/app.py</url>
-          <line>340</line>
+          <line>342</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pain_recognition/prediction.py</url>
+          <line>96</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pain_recognition/prediction.py</url>
+          <line>116</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pain_recognition/prediction.py</url>
+          <line>114</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/SQLiteRest$mysqlRest.coverage" NAME="mysqlRest Coverage Results" MODIFIED="1616756090115" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/mysqlRest$app.coverage" NAME="app Coverage Results" MODIFIED="1601986684738" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/SQLiteRest$app.coverage" NAME="app Coverage Results" MODIFIED="1613663748692" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SQLiteRest$app.coverage" NAME="app Coverage Results" MODIFIED="1616757969515" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/mysqlRest$mysqlRest.coverage" NAME="mysqlRest Coverage Results" MODIFIED="1601478380218" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SQLiteRest$prediction.coverage" NAME="prediction Coverage Results" MODIFIED="1616756966501" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pain_recognition" />
   </component>
 </project>
