@@ -150,7 +150,7 @@ def update_visit_by_id(_id):
             print(upload_directory)
             # datetime object containing current date and time
             now = datetime.now()
-            print("now =", now)
+            print("nowww =", now)
             # dd/mm/YY H:M:S
             dt_string = now.strftime("%d-%m-%Y_%H-%M-%S")
             filepath = os.path.join(upload_directory, dt_string + '_' + filename)
