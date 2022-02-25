@@ -40,7 +40,7 @@ marshmallow-sqlalchemy==0.23.1
 mimerender==0.6.0
 multidict==4.7.6
 mysqlclient==2.0.1
-numpy==1.18.5
+numpy
 oauthlib==3.1.0
 opencv-python==4.4.0.44
 opt-einsum==3.3.0
