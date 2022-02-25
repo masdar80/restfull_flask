@@ -452,4 +452,4 @@ def update_visit_image_by_id(_id):
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+    app.run()
