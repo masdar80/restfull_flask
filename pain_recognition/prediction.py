@@ -5,15 +5,15 @@ from PIL import Image
 from keras.preprocessing.image import img_to_array
 from keras.models import model_from_json
 
-
 classifier = model_from_json(open("pain.json", "r").read())
 # load weights
 classifier.load_weights('pain.h5')
 face_classifier = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 class_labels = ['0', '1', '2', '3']
 global roi_color
-def face_detector(img):
 
+
+def face_detector(img):
     roi_color = []
     faces = []
     # Convert image to grayscale
@@ -63,20 +63,22 @@ def face_detector(img):
             roi_color = image[y:lastFace[1] + lastFace[3] + 10, x:lastFace[0] + lastFace[2] + 10]
     return roi_color
 
+
 def face_analysis_after_Detection(face, result):
-       #gray = cv2.cvtColor(face, cv2.COLOR_BGR2GRAY)
-       # roi = cv2.resize(gray, (64, 64), interpolation=cv2.INTER_AREA)
-        roi = cv2.resize(face, (64, 64), interpolation=cv2.INTER_AREA)
-        roi = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
-        #roi = roi.flatten().reshape(1, 64, 64, 1)
-        #roi = roi.astype("float") / 255.0
-        roi = img_to_array(roi)
-        roi = np.expand_dims(roi, axis=0)
-        #roi = roi.reshape(1, 64, 64, 1)
-        preds = classifier.predict_classes(roi)
-        label = class_labels[preds[0]]
-        result.append(label)
-        return result
+    # gray = cv2.cvtColor(face, cv2.COLOR_BGR2GRAY)
+    # roi = cv2.resize(gray, (64, 64), interpolation=cv2.INTER_AREA)
+    roi = cv2.resize(face, (64, 64), interpolation=cv2.INTER_AREA)
+    roi = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
+    # roi = roi.flatten().reshape(1, 64, 64, 1)
+    # roi = roi.astype("float") / 255.0
+    roi = img_to_array(roi)
+    roi = np.expand_dims(roi, axis=0)
+    # roi = roi.reshape(1, 64, 64, 1)
+    preds = classifier.predict_classes(roi)
+    label = class_labels[preds[0]]
+    result.append(label)
+    return result
+
 
 def face_analysis_without_Detection(path, result):
     img = cv2.imread(path)
@@ -92,27 +94,30 @@ def face_analysis_without_Detection(path, result):
 
 # %%
 
-def get_prediction_result(path):
+def get_prediction_result(filepath):
+    #print("Inside Path:" + filepath)
     try:
         global finalResult
         finalResult = []
-        img = Image.open(path, "r")
-        img = img.resize((200,200), Image.ANTIALIAS)
+        img = Image.open(filepath, "r")
+        img = img.resize((200, 200), Image.ANTIALIAS)
         face = face_detector(img)
         finalResult.clear()
         if type(face).__name__ == 'ndarray':
             finalResult = face_analysis_after_Detection(face, finalResult)
         elif type(face).__name__ != 'ndarray':
-          finalResult = face_analysis_without_Detection(path, finalResult)
+            finalResult = face_analysis_without_Detection(filepath, finalResult)
+            print("Final Result:" + finalResult[0])
         return finalResult[0]
     except Exception as error:
         print('Caught this error: ' + repr(error))
 
 
+def getresult():#test function
+    path = "F:/uploads/degree_only/26-03-2021_15-08-38_1e267f48-b471-4cc3-bc20-462efd12135f1284934885072510030.jpg"
+    print("Result inside Function"+get_prediction_result(path))
 
-
-
-#path = "F:/uploads/degree_only/26-03-2021_13-57-18_ba15e5aa-281e-43ca-9e43-a6a3d7b08733146190228196765456.jpg"
 # #path="im21.png"
-#print(get_prediction_result(path))
-
+# path = "F:/uploads/degree_only/26-03-2021_15-08-38_1e267f48-b471-4cc3-bc20-462efd12135f1284934885072510030.jpg"
+#
+# print("Result inside"+get_prediction_result(path))

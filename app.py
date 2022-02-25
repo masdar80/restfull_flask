@@ -3,14 +3,13 @@ import os
 import os.path
 from datetime import datetime, date
 from os import path
-
 import flask
 from flask import make_response, send_file
 from flask import Flask, request, redirect, jsonify
 from sqlalchemy import engine
 from werkzeug.utils import secure_filename
 from resources.Patient import Patient, PatientSchema, db, app, ALLOWED_EXTENSIONS, Visits, VisitsSchema
-from pain_recognition.prediction import get_prediction_result
+from pain_recognition.prediction import get_prediction_result, getresult
 
 from datetime import datetime
 from sqlalchemy import create_engine, Column, Integer, ForeignKey, Numeric, DateTime, func
@@ -150,20 +149,22 @@ def update_visit_by_id(_id):
             print(upload_directory)
             # datetime object containing current date and time
             now = datetime.now()
-            print("nowww =", now)
+            print("now =", now)
             # dd/mm/YY H:M:S
             dt_string = now.strftime("%d-%m-%Y_%H-%M-%S")
             filepath = os.path.join(upload_directory, dt_string + '_' + filename)
             print("old path:" + filepath)
-            filepath = filepath.replace("\\", "/")
-            print("new path:" + filepath)
+
             if not path.exists(upload_directory):
                 os.mkdir(upload_directory)
             file.save(filepath)
+
             get_visit.patient_visits_image = filepath
             # Get Pain Degree From Image
             # get_prediction_result(filepath)
 
+            filepath = filepath.replace("\\", "/")
+            print("new path:" + filepath)
             print(get_prediction_result(filepath))
         # get_visit.patient_visit_pain_degree = request.form['patient_visit_pain_degree']
         else:
@@ -232,11 +233,13 @@ def create_visit():
             print(upload_directory)
             # datetime object containing current date and time
             now = datetime.now()
-            print("now =", now)
+            print("nowww =", now)
             # dd/mm/YY H:M:S
             dt_string = now.strftime("%d-%m-%Y_%H-%M-%S")
             filepath = os.path.join(upload_directory, dt_string + '_' + filename)
             print(filepath)
+            filepath = filepath.replace("\\", "/")
+            print("new path:" + filepath)
             if not path.exists(upload_directory):
                 os.mkdir(upload_directory)
             file.save(filepath)
@@ -386,11 +389,13 @@ def pain_mesurment():
             dt_string = now.strftime("%d-%m-%Y_%H-%M-%S")
             filepath = os.path.join(upload_directory, dt_string + '_' + filename)
             print(filepath)
+            filepath = filepath.replace("\\", "/")
+            print("new path:" + filepath)
             if not path.exists(upload_directory):
                 os.mkdir(upload_directory)
             file.save(filepath)
             # Get Pain Degree From Image
-            # get_prediction_result(filepath)
+
             result = get_prediction_result(filepath)
             print(get_prediction_result(filepath))
         else:
@@ -429,18 +434,21 @@ def update_visit_image_by_id(_id):
             # Get Pain Degree From Image
             # get_prediction_result(filepath)
             calculated_degree = get_prediction_result(filepath)
-            print(calculated_degree)
+            print("Pain Degree: patient_visit_pain_degree " + calculated_degree)
             get_visit.patient_visit_pain_degree = calculated_degree
             #get_visit.patient_visit_pain_degree = 1
         else:
             resp = jsonify({'message': 'مشكلة باسم الصورة'})
+            print("Namee Problem")
             resp.status_code = 407
             return resp
     db.session.add(get_visit)
     db.session.commit()
     visit_schema = VisitsSchema()
     visit = visit_schema.dump(get_visit)
-    return make_response(jsonify(visit))
+   # return make_response(jsonify(visit))
+    print("Pain Degree: " + calculated_degree)
+    return make_response(jsonify({'degree': calculated_degree}))
 
 
 if __name__ == "__main__":

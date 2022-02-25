@@ -34,7 +34,12 @@ make sure in requirements.txt that keras located after tensorflow
 install project packages
 C:\Users\MasDar\AppData\Local\Programs\Python\Python36\Scripts\pip install -r requirements.txt
 -------------------------------------------------------------------------------------------------
-
+-------------------------------------
+download WHL package then install it
+you may need to copy whl file to script folder and run pip install it there
+https://pypi.org/project/tensorflow/#files
+https://files.pythonhosted.org/packages/c1/df/2fac43b51fac41fbd84a8b21b8b40f8f9bfa7fe4874220c5f114406a9b2c/tensorflow_gpu-2.3.1-cp36-cp36m-win_amd64.whl
+----------------------------------------------------------------
 manual install ???   better u install VC_redist.x64.exe
 C:\Users\MasDar\AppData\Local\Programs\Python\Python36\Scripts\pip install tensorflow
 -------------------------------------------------------------------------------------------------
